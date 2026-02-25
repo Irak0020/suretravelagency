@@ -247,30 +247,523 @@
     </main>
 
     <!-- Bottom Navigation Bar -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pb-6 pt-2 z-50">
+     <nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pb-6 pt-2 z-50">
         <div class="flex items-center justify-around max-w-container mx-auto">
-            <a href="index.html" class="flex flex-col items-center gap-1 text-primary">
-                <span class="material-symbols-outlined fill-1">home</span>
+            <a href="./Home.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">home</span>
                 <span class="text-[10px] font-medium">Accueil</span>
             </a>
-            <a href="services.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+            <a href="./services.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
                 <span class="material-symbols-outlined">business_center</span>
                 <span class="text-[10px] font-medium">Services</span>
             </a>
-            <a href="booking.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
-                <span class="material-symbols-outlined">calendar_month</span>
+            <a href="./booking.html" class="flex flex-col items-center gap-1 text-primary">
+                <span class="material-symbols-outlined fill-1">calendar_month</span>
                 <span class="text-[10px] font-medium">Réservations</span>
             </a>
-            <a href="about.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+            <a href="./aboutus.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
                 <span class="material-symbols-outlined">info</span>
                 <span class="text-[10px] font-medium">À Propos</span>
             </a>
-            <a href="support.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+            <a href="./support.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
                 <span class="material-symbols-outlined">contact_support</span>
                 <span class="text-[10px] font-medium">Aide</span>
             </a>
         </div>
     </nav>
+<!-- AI Chatbot Assistant -->
+<style>
+    .chatbot-container {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 320px;
+        max-width: 90vw;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        z-index: 1000;
+        transition: all 0.3s ease;
+        transform: translateY(20px);
+        opacity: 0;
+        visibility: hidden;
+        border: 1px solid rgba(15, 73, 189, 0.2);
+    }
+    .dark .chatbot-container {
+        background: #1e293b;
+        border-color: rgba(255,255,255,0.1);
+    }
+    .chatbot-container.open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    .chatbot-header {
+        background: #0f49bd;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 20px 20px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    .chatbot-header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .chatbot-avatar {
+        width: 32px;
+        height: 32px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .chatbot-title {
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .chatbot-subtitle {
+        font-size: 11px;
+        opacity: 0.8;
+    }
+    .chatbot-close {
+        cursor: pointer;
+        font-size: 20px;
+    }
+    .chatbot-messages {
+        height: 300px;
+        overflow-y: auto;
+        padding: 15px;
+        background: #f8fafc;
+    }
+    .dark .chatbot-messages {
+        background: #0f172a;
+    }
+    .message {
+        margin-bottom: 15px;
+        display: flex;
+        animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .message.bot {
+        justify-content: flex-start;
+    }
+    .message.user {
+        justify-content: flex-end;
+    }
+    .message-content {
+        max-width: 80%;
+        padding: 12px 15px;
+        border-radius: 18px;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+    .bot .message-content {
+        background: #e9eef5;
+        color: #1e293b;
+        border-bottom-left-radius: 4px;
+    }
+    .dark .bot .message-content {
+        background: #334155;
+        color: #f1f5f9;
+    }
+    .user .message-content {
+        background: #0f49bd;
+        color: white;
+        border-bottom-right-radius: 4px;
+    }
+    .chatbot-input-area {
+        padding: 15px;
+        border-top: 1px solid #e2e8f0;
+        background: white;
+        border-radius: 0 0 20px 20px;
+    }
+    .dark .chatbot-input-area {
+        background: #1e293b;
+        border-color: #334155;
+    }
+    .chatbot-input-wrapper {
+        display: flex;
+        gap: 10px;
+    }
+    .chatbot-input {
+        flex: 1;
+        padding: 12px 15px;
+        border: 1px solid #e2e8f0;
+        border-radius: 25px;
+        outline: none;
+        font-size: 13px;
+        background: #f8fafc;
+    }
+    .dark .chatbot-input {
+        background: #0f172a;
+        border-color: #334155;
+        color: white;
+    }
+    .chatbot-input:focus {
+        border-color: #0f49bd;
+    }
+    .chatbot-send {
+        width: 45px;
+        height: 45px;
+        background: #0f49bd;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s;
+    }
+    .chatbot-send:hover {
+        transform: scale(1.05);
+    }
+    .chatbot-toggle {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background: #0f49bd;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 5px 20px rgba(15, 73, 189, 0.4);
+        z-index: 999;
+        transition: transform 0.2s;
+        border: 2px solid white;
+    }
+    .dark .chatbot-toggle {
+        border-color: #1e293b;
+    }
+    .chatbot-toggle:hover {
+        transform: scale(1.1);
+    }
+    .chatbot-quick-questions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 10px;
+    }
+    .quick-question {
+        padding: 6px 12px;
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 15px;
+        font-size: 11px;
+        cursor: pointer;
+        color: #1e293b;
+        transition: all 0.2s;
+    }
+    .dark .quick-question {
+        background: #334155;
+        color: #f1f5f9;
+        border-color: #475569;
+    }
+    .quick-question:hover {
+        background: #0f49bd;
+        color: white;
+        border-color: #0f49bd;
+    }
+    .typing-indicator {
+        display: flex;
+        gap: 4px;
+        padding: 12px 15px;
+        background: #e9eef5;
+        border-radius: 18px;
+        width: fit-content;
+        border-bottom-left-radius: 4px;
+    }
+    .dark .typing-indicator {
+        background: #334155;
+    }
+    .typing-dot {
+        width: 8px;
+        height: 8px;
+        background: #64748b;
+        border-radius: 50%;
+        animation: typing 1.4s infinite ease-in-out;
+    }
+    .dark .typing-dot {
+        background: #94a3b8;
+    }
+    .typing-dot:nth-child(1) { animation-delay: 0s; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing {
+        0%, 60%, 100% { transform: translateY(0); }
+        30% { transform: translateY(-8px); }
+    }
+    .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 20px;
+        height: 20px;
+        background: #ef4444;
+        color: white;
+        border-radius: 50%;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid white;
+    }
+</style>
+
+<div class="chatbot-toggle" onclick="toggleChatbot()" id="chatbotToggle">
+    <span class="material-symbols-outlined">chat</span>
+    <span class="notification-badge" id="chatNotification" style="display: none;">1</span>
+</div>
+
+<div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-header" onclick="toggleChatbot()">
+        <div class="chatbot-header-left">
+            <div class="chatbot-avatar">
+                <span class="material-symbols-outlined" style="font-size: 18px;">smart_toy</span>
+            </div>
+            <div>
+                <div class="chatbot-title">Assistant Sure Travel</div>
+                <div class="chatbot-subtitle">En ligne • Réponse instantanée</div>
+            </div>
+        </div>
+        <span class="chatbot-close material-symbols-outlined" onclick="event.stopPropagation(); toggleChatbot()">close</span>
+    </div>
+    
+    <div class="chatbot-messages" id="chatMessages">
+        <div class="message bot">
+            <div class="message-content">
+                Bonjour ! 👋 Je suis l'assistant virtuel de Sure Travel. Comment puis-je vous aider aujourd'hui ?
+            </div>
+        </div>
+    </div>
+    
+    <div class="chatbot-input-area">
+        <div class="chatbot-quick-questions" id="quickQuestions">
+            <span class="quick-question" onclick="quickQuestion('paiement')">💳 Paiement</span>
+            <span class="quick-question" onclick="quickQuestion('bagages')">🧳 Bagages</span>
+            <span class="quick-question" onclick="quickQuestion('annulation')">❌ Annulation</span>
+            <span class="quick-question" onclick="quickQuestion('vols')">✈️ Vols</span>
+            <span class="quick-question" onclick="quickQuestion('hotels')">🏨 Hôtels</span>
+            <span class="quick-question" onclick="quickQuestion('contact')">📞 Contact</span>
+            <span class="quick-question" onclick="quickQuestion('safari')">🦁 Safari</span>
+        </div>
+        <div class="chatbot-input-wrapper">
+            <input type="text" class="chatbot-input" id="chatInput" placeholder="Posez votre question..." onkeypress="handleKeyPress(event)">
+            <button class="chatbot-send" onclick="sendMessage()">
+                <span class="material-symbols-outlined" style="font-size: 20px;">send</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Chatbot State
+    let isChatbotOpen = false;
+    let unreadMessages = 1; // Start with 1 for welcome message
+    
+    // Toggle Chatbot
+    function toggleChatbot() {
+        const container = document.getElementById('chatbotContainer');
+        const toggle = document.getElementById('chatbotToggle');
+        
+        if (container.classList.contains('open')) {
+            container.classList.remove('open');
+            isChatbotOpen = false;
+        } else {
+            container.classList.add('open');
+            isChatbotOpen = true;
+            // Clear notification when opened
+            unreadMessages = 0;
+            document.getElementById('chatNotification').style.display = 'none';
+        }
+    }
+    
+    // Handle Enter key
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    }
+    
+    // Send Message
+    function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const message = input.value.trim();
+        
+        if (message === '') return;
+        
+        // Add user message
+        addMessage(message, 'user');
+        input.value = '';
+        
+        // Show typing indicator
+        showTypingIndicator();
+        
+        // Simulate AI thinking
+        setTimeout(() => {
+            removeTypingIndicator();
+            const response = getAIResponse(message);
+            addMessage(response, 'bot');
+        }, 1500);
+    }
+    
+    // Quick Questions
+    function quickQuestion(type) {
+        let question = '';
+        switch(type) {
+            case 'paiement':
+                question = 'Quels sont les modes de paiement acceptés ?';
+                break;
+            case 'bagages':
+                question = 'Quelle est la franchise bagages ?';
+                break;
+            case 'annulation':
+                question = 'Comment annuler ma réservation ?';
+                break;
+            case 'vols':
+                question = 'Comment réserver un vol ?';
+                break;
+            case 'hotels':
+                question = 'Quels hôtels recommandez-vous ?';
+                break;
+            case 'contact':
+                question = 'Comment contacter le support ?';
+                break;
+            case 'safari':
+                question = 'Pouvez-vous me parler des safaris ?';
+                break;
+        }
+        
+        addMessage(question, 'user');
+        
+        // Show typing indicator
+        showTypingIndicator();
+        
+        setTimeout(() => {
+            removeTypingIndicator();
+            const response = getAIResponse(question);
+            addMessage(response, 'bot');
+        }, 1000);
+    }
+    
+    // Add message to chat
+    function addMessage(text, sender) {
+        const messages = document.getElementById('chatMessages');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        messageDiv.innerHTML = `<div class="message-content">${text}</div>`;
+        messages.appendChild(messageDiv);
+        messages.scrollTop = messages.scrollHeight;
+        
+        // Update notification if chatbot is closed
+        if (!isChatbotOpen && sender === 'bot') {
+            unreadMessages++;
+            document.getElementById('chatNotification').style.display = 'flex';
+            document.getElementById('chatNotification').textContent = unreadMessages;
+        }
+    }
+    
+    // Show typing indicator
+    function showTypingIndicator() {
+        const messages = document.getElementById('chatMessages');
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message bot';
+        typingDiv.id = 'typingIndicator';
+        typingDiv.innerHTML = `
+            <div class="typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        `;
+        messages.appendChild(typingDiv);
+        messages.scrollTop = messages.scrollHeight;
+    }
+    
+    // Remove typing indicator
+    function removeTypingIndicator() {
+        const typing = document.getElementById('typingIndicator');
+        if (typing) typing.remove();
+    }
+    
+    // AI Response Logic
+    function getAIResponse(question) {
+        const q = question.toLowerCase();
+        
+        // Payment questions
+        if (q.includes('paiement') || q.includes('payer') || q.includes('mode de paiement')) {
+            return "Nous acceptons plusieurs modes de paiement :\n\n• 💳 MTN MoMo (79 639 803)\n• 📱 Airtel Money\n• 🏦 Virement bancaire (BCB, BANCOBU, Interbank)\n• 💳 Visa/Mastercard\n• 💵 Espèces en agence\n\nTous les paiements sont 100% sécurisés et cryptés ! 🔒";
+        }
+        
+        // Baggage questions
+        else if (q.includes('bagage') || q.includes('valise') || q.includes('franchise') || q.includes('poids')) {
+            return "🛄 **Franchise bagages standard :**\n\n• ✈️ Économique : 1 bagage 23kg + 1 cabine 7kg\n• 💺 Premium : 2 bagages 23kg\n• 👔 Affaires : 2 bagages 32kg\n\nConsultez votre e-billet pour les détails exacts !";
+        }
+        
+        // Cancellation questions
+        else if (q.includes('annulation') || q.includes('annuler') || q.includes('remboursement')) {
+            return "❌ **Politique d'annulation :**\n\n• 🔵 Tarif Flex : Annulation gratuite jusqu'à 24h avant\n• 🟡 Tarif Standard : Frais de 50%\n• 🔴 Tarif Promo : Non remboursable mais modifiable\n\nContactez-nous au +257 79 639 803 pour plus d'aide !";
+        }
+        
+        // Flight questions
+        else if (q.includes('vol') || q.includes('avion') || q.includes('billet')) {
+            return "✈️ **Réservation de vols :**\n\nNous proposons des vols vers plus de 500 destinations !\n\n• 🇫🇷 Paris dès 450 000 BIF\n• 🇹🇷 Istanbul dès 520 000 BIF\n• 🇿🇦 Johannesburg dès 380 000 BIF\n• 🇦🇪 Dubaï dès 650 000 BIF\n\nRéservez sur notre page Réservations !";
+        }
+        
+        // Hotel questions
+        else if (q.includes('hôtel') || q.includes('hotel') || q.includes('logement') || q.includes('hébergement')) {
+            return "🏨 **Hébergements de luxe :**\n\nNous travaillons avec plus de 1000 hôtels partenaires :\n\n• 🌴 Maldives - Resorts 5*\n• 🏕️ Tanzanie - Lodges de safari\n• 🏛️ Europe - Boutique-hôtels\n• 🌆 Dubaï - Skycrapers\n\nNous avons le meilleur rapport qualité-prix !";
+        }
+        
+        // Contact questions
+        else if (q.includes('contact') || q.includes('support') || q.includes('aide') || q.includes('urgence')) {
+            return "📞 **Contactez-nous immédiatement :**\n\n• ☎️ Téléphone : +257 79 639 803 (24/7)\n• 💬 WhatsApp : +257 79 639 803\n• 📧 Email : support@suretravel.com\n• 🏢 Agence : Boulevard de l'Indépendance, Bujumbura\n\nNous sommes là pour vous 24h/24 !";
+        }
+        
+        // Safari questions
+        else if (q.includes('safari') || q.includes('tanzanie') || q.includes('kenya') || q.includes('animaux')) {
+            return "🦁 **Safaris inoubliables :**\n\nNos packages safari populaires :\n\n• 🌅 Tanzanie : 5 jours/4 nuits - 1 200 000 BIF\n• 🌄 Kenya : 6 jours/5 nuits - 1 500 000 BIF\n• 🏜️ Namibie : 7 jours/6 nuits - 1 800 000 BIF\n\n✓ Guides francophones\n✓ Hébergement lodge de luxe\n✓ 4x4 privé inclus\n\nVoulez-vous plus de détails ?";
+        }
+        
+        // Pricing questions
+        else if (q.includes('prix') || q.includes('tarif') || q.includes('coûte') || q.includes('combien')) {
+            return "💰 **Nos tarifs :**\n\n• ✈️ Vols : dès 380 000 BIF (aller-retour)\n• 🏨 Hôtels : dès 120 000 BIF/nuit\n• 🚗 Location voiture : dès 45 000 BIF/jour\n• 🦁 Safaris : dès 1 200 000 BIF (tout inclus)\n\nContactez-nous pour un devis personnalisé !";
+        }
+        
+        // Visa questions
+        else if (q.includes('visa') || q.includes('passeport') || q.includes('documents')) {
+            return "🛂 **Aide aux visas :**\n\nNous vous assistons pour vos démarches :\n\n• 📋 Liste des documents nécessaires\n• 📝 Aide au remplissage\n• ⏱️ Délais de traitement\n• 💼 Assurance voyage\n\nAppelez-nous pour plus d'informations !";
+        }
+        
+        // Default response
+        else {
+            return "Merci pour votre question ! 🤗\n\nPour une réponse plus précise, je vous invite à :\n\n1️⃣ Utiliser nos questions rapides ci-dessus\n2️⃣ Appeler le +257 79 639 803 (24/7)\n3️⃣ Envoyer un WhatsApp au même numéro\n\nComment puis-je mieux vous aider ?";
+        }
+    }
+    
+    // Add welcome message if needed
+    window.addEventListener('load', function() {
+        // Auto-show chatbot after 5 seconds
+        setTimeout(() => {
+            if (!isChatbotOpen) {
+                document.getElementById('chatNotification').style.display = 'flex';
+            }
+        }, 5000);
+    });
+</script>
+<!-- End AI Chatbot Assistant -->
 
     <script>
         function toggleDarkMode() {
