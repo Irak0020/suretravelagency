@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" name="viewport">
+    <title>Sure Travel Agency - Paiement</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f49bd",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-1 {
+            font-variation-settings: 'FILL' 1;
+        }
+        @media (min-width: 768px) {
+            .max-w-container {
+                max-width: 768px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        .payment-method {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .payment-method:hover {
+            border-color: #0f49bd;
+            background-color: rgba(15, 73, 189, 0.05);
+        }
+        .payment-method.selected {
+            border-color: #0f49bd;
+            background-color: rgba(15, 73, 189, 0.1);
+            border-width: 2px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Header / Top Bar -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3">
+        <div class="flex items-center justify-between max-w-container mx-auto w-full">
+            <a href="index.html" class="flex items-center gap-3">
+                <!-- New Logo Image -->
+                <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden p-1">
+                    <img alt="Sure Travel Agency Logo" class="w-full h-full object-contain" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCABkAGQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/Z">
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold leading-tight tracking-tight text-slate-900 dark:text-white">SURE</h1>
+                    <p class="text-[8px] uppercase tracking-widest text-primary font-bold">TRAVEL AGENCY</p>
+                </div>
+            </a>
+            <div class="flex items-center gap-2">
+                <button onclick="toggleDarkMode()" class="p-2 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:inline">light_mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-container mx-auto w-full pb-24 px-4">
+        <!-- Progress Steps -->
+        <div class="flex items-center justify-between pt-6 pb-8">
+            <div class="flex items-center">
+                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">1</div>
+                <span class="text-xs ml-2 font-medium">Réservation</span>
+            </div>
+            <div class="flex-1 h-0.5 bg-primary/30 mx-2"></div>
+            <div class="flex items-center">
+                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">2</div>
+                <span class="text-xs ml-2 font-medium">Paiement</span>
+            </div>
+            <div class="flex-1 h-0.5 bg-slate-200 dark:bg-slate-700 mx-2"></div>
+            <div class="flex items-center">
+                <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-500 flex items-center justify-center font-bold text-sm">3</div>
+                <span class="text-xs ml-2 font-medium text-slate-500">Confirmation</span>
+            </div>
+        </div>
+
+        <!-- Page Header -->
+        <div class="pb-4">
+            <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Finaliser le paiement</h2>
+            <p class="text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm text-green-600">lock</span>
+                Paiement 100% sécurisé et crypté
+            </p>
+        </div>
+
+        <!-- Payment Methods Section -->
+        <div class="mb-6">
+            <h3 class="font-bold mb-3 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">payments</span>
+                Choisissez votre mode de paiement
+            </h3>
+
+            <div class="space-y-3">
+                <!-- MTN MoMo -->
+                <div onclick="selectPayment('mtn')" id="payment-mtn" class="payment-method selected p-4 border-2 border-primary rounded-xl bg-primary/5 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-[#FFCC00] flex items-center justify-center font-bold text-black text-sm">MTN</div>
+                        <div>
+                            <p class="font-bold text-base">MTN MoMo</p>
+                            <p class="text-xs text-slate-500">Paiement instantané - Numéro : 79 639 803</p>
+                        </div>
+                    </div>
+                    <div class="w-6 h-6 rounded-full border-2 border-primary bg-white flex items-center justify-center">
+                        <div class="w-3 h-3 rounded-full bg-primary"></div>
+                    </div>
+                </div>
+
+                <!-- Airtel Money -->
+                <div onclick="selectPayment('airtel')" id="payment-airtel" class="payment-method p-4 border-2 border-slate-200 dark:border-slate-700 rounded-xl flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-[#FF0000] flex items-center justify-center font-bold text-white text-sm">airtel</div>
+                        <div>
+                            <p class="font-bold text-base">Airtel Money</p>
+                            <p class="text-xs text-slate-500">Paiement simple et rapide</p>
+                        </div>
+                    </div>
+                    <div class="w-6 h-6 rounded-full border-2 border-slate-300 dark:border-slate-600"></div>
+                </div>
+
+                <!-- Virement Bancaire -->
+                <div onclick="selectPayment('bank')" id="payment-bank" class="payment-method p-4 border-2 border-slate-200 dark:border-slate-700 rounded-xl flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-2xl">account_balance</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-base">Virement Bancaire</p>
+                            <p class="text-xs text-slate-500">BCB, BANCOBU, Interbank</p>
+                        </div>
+                    </div>
+                    <div class="w-6 h-6 rounded-full border-2 border-slate-300 dark:border-slate-600"></div>
+                </div>
+
+                <!-- Carte bancaire -->
+                <div onclick="selectPayment('card')" id="payment-card" class="payment-method p-4 border-2 border-slate-200 dark:border-slate-700 rounded-xl flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-2xl">credit_card</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-base">Visa / Mastercard</p>
+                            <p class="text-xs text-slate-500">Paiement international sécurisé</p>
+                        </div>
+                    </div>
+                    <div class="w-6 h-6 rounded-full border-2 border-slate-300 dark:border-slate-600"></div>
+                </div>
+
+                <!-- Espèces en agence -->
+                <div onclick="selectPayment('cash')" id="payment-cash" class="payment-method p-4 border-2 border-slate-200 dark:border-slate-700 rounded-xl flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-2xl">payments</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-base">Espèces en agence</p>
+                            <p class="text-xs text-slate-500">Payez directement à notre bureau</p>
+                        </div>
+                    </div>
+                    <div class="w-6 h-6 rounded-full border-2 border-slate-300 dark:border-slate-600"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Details Forms - All visible -->
+        <div id="mtn-form" class="payment-detail-form bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-primary/10 mb-4">
+            <h4 class="font-bold mb-3 flex items-center gap-2 text-primary">
+                <span class="material-symbols-outlined">phone_iphone</span>
+                Détails du paiement MTN MoMo
+            </h4>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Numéro de téléphone MTN</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">phone</span>
+                        <input type="tel" placeholder="Ex: 79 639 803" value="79 639 803" class="w-full h-14 pl-10 pr-4 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all">
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1">Vous recevrez une demande de confirmation sur votre téléphone</p>
+                </div>
+                <div class="bg-primary/5 p-3 rounded-lg">
+                    <p class="text-sm flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">info</span>
+                        Après validation, vous recevrez une notification sur votre téléphone pour confirmer le paiement.
+                    </p>
+                </div>
+                <button onclick="simulatePayment('mtn')" class="w-full bg-primary text-white font-bold py-3 rounded-xl hover:bg-primary/90 transition-colors">
+                    Payer avec MTN MoMo
+                </button>
+            </div>
+        </div>
+
+        <div id="airtel-form" class="payment-detail-form bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-primary/10 mb-4">
+            <h4 class="font-bold mb-3 flex items-center gap-2 text-primary">
+                <span class="material-symbols-outlined">phone_android</span>
+                Détails du paiement Airtel Money
+            </h4>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Numéro de téléphone Airtel</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">phone</span>
+                        <input type="tel" placeholder="Ex: 69 314 640" class="w-full h-14 pl-10 pr-4 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all">
+                    </div>
+                </div>
+                <button onclick="simulatePayment('airtel')" class="w-full bg-primary text-white font-bold py-3 rounded-xl hover:bg-primary/90 transition-colors">
+                    Payer avec Airtel Money
+                </button>
+            </div>
+        </div>
+
+        <div id="bank-form" class="payment-detail-form bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-primary/10 mb-4">
+            <h4 class="font-bold mb-3 flex items-center gap-2 text-primary">
+                <span class="material-symbols-outlined">account_balance</span>
+                Coordonnées bancaires
+            </h4>
+            <div class="space-y-3">
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="bg-primary/5 p-3 rounded-lg">
+                        <p class="text-xs text-slate-500">Banque</p>
+                        <p class="font-semibold">BCB - Bujumbura</p>
+                    </div>
+                    <div class="bg-primary/5 p-3 rounded-lg">
+                        <p class="text-xs text-slate-500">Compte</p>
+                        <p class="font-semibold">1234 5678 9012 3456</p>
+                    </div>
+                </div>
+                <div class="bg-primary/5 p-3 rounded-lg">
+                    <p class="text-xs text-slate-500">Titulaire</p>
+                    <p class="font-semibold">SURE TRAVEL AGENCY SARL</p>
+                </div>
+                <div class="bg-primary/5 p-3 rounded-lg">
+                    <p class="text-xs text-slate-500">SWIFT/BIC</p>
+                    <p class="font-semibold">BCBIBIBI</p>
+                </div>
+                <p class="text-xs text-slate-400">Utilisez la référence #ST8829 dans votre virement</p>
+                <button onclick="simulatePayment('bank')" class="w-full bg-primary text-white font-bold py-3 rounded-xl hover:bg-primary/90 transition-colors">
+                    J'ai effectué le virement
+                </button>
+            </div>
+        </div>
+
+        <div id="card-form" class="payment-detail-form bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-primary/10 mb-4">
+            <h4 class="font-bold mb-3 flex items-center gap-2 text-primary">
+                <span class="material-symbols-outlined">credit_card</span>
+                Paiement par carte bancaire
+            </h4>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Numéro de carte</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">credit_card</span>
+                        <input type="text" placeholder="1234 5678 9012 3456" class="w-full h-14 pl-10 pr-4 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Date d'expiration</label>
+                        <input type="text" placeholder="MM/AA" class="w-full h-14 px-4 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">CVV</label>
+                        <input type="text" placeholder="123" class="w-full h-14 px-4 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Nom sur la carte</label>
+                    <input type="text" placeholder="JEAN DUPONT" class="w-full h-14 px-4 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all">
+                </div>
+                <button onclick="simulatePayment('card')" class="w-full bg-primary text-white font-bold py-3 rounded-xl hover:bg-primary/90 transition-colors">
+                    Payer par carte
+                </button>
+            </div>
+        </div>
+
+        <div id="cash-form" class="payment-detail-form bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-primary/10 mb-4">
+            <h4 class="font-bold mb-3 flex items-center gap-2 text-primary">
+                <span class="material-symbols-outlined">storefront</span>
+                Paiement en agence
+            </h4>
+            <div class="space-y-3">
+                <p class="text-sm">Notre agence est située au :</p>
+                <div class="bg-primary/5 p-4 rounded-lg">
+                    <p class="font-bold">Boulevard de l'Indépendance</p>
+                    <p class="text-sm">Bujumbura, Burundi</p>
+                    <p class="text-sm">À côté de l'hôtel Source du Nil</p>
+                </div>
+                <p class="text-sm">Horaires :</p>
+                <div class="flex gap-2">
+                    <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Lun-Ven: 08h-18h</span>
+                    <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Sam: 09h-15h</span>
+                </div>
+                <button onclick="simulatePayment('cash')" class="w-full bg-primary text-white font-bold py-3 rounded-xl hover:bg-primary/90 transition-colors">
+                    Je payerai en agence
+                </button>
+            </div>
+        </div>
+
+        <!-- Promo Code -->
+        <div class="mb-6">
+            <div class="flex gap-2">
+                <div class="relative flex-1">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">confirmation_number</span>
+                    <input type="text" placeholder="Code promo ou réduction" class="w-full h-14 pl-10 pr-4 rounded-xl border border-primary/20 bg-white dark:bg-slate-800 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all">
+                </div>
+                <button class="px-6 h-14 border-2 border-primary text-primary rounded-xl font-semibold hover:bg-primary/5 transition-colors">
+                    Appliquer
+                </button>
+            </div>
+        </div>
+
+        <!-- Security Badges -->
+        <div class="grid grid-cols-3 gap-3 mb-8">
+            <div class="text-center">
+                <span class="material-symbols-outlined text-primary text-3xl">lock</span>
+                <p class="text-xs font-semibold mt-1">Paiement sécurisé</p>
+            </div>
+            <div class="text-center">
+                <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+                <p class="text-xs font-semibold mt-1">Certifié SSL</p>
+            </div>
+            <div class="text-center">
+                <span class="material-symbols-outlined text-primary text-3xl">support_agent</span>
+                <p class="text-xs font-semibold mt-1">Support 24/7</p>
+            </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="p-5 bg-primary/5 dark:bg-primary/10 rounded-2xl border border-primary/10 mb-8">
+            <h4 class="font-bold mb-2 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">contact_support</span>
+                Un problème avec le paiement ?
+            </h4>
+            <p class="text-sm mb-3">Contactez-nous immédiatement</p>
+            <div class="flex flex-col sm:flex-row gap-2">
+                <a href="tel:+25779639803" class="flex-1 flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                    <span class="material-symbols-outlined">call</span>
+                    +257 79 639 803
+                </a>
+                <a href="support.html" class="flex-1 flex items-center justify-center gap-2 border border-primary text-primary py-3 rounded-xl font-semibold hover:bg-primary/5 transition-colors">
+                    <span class="material-symbols-outlined">chat</span>
+                    Chat en ligne
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification Toast -->
+    <div id="notification" class="fixed top-20 right-4 bg-green-500 text-white px-4 py-3 rounded-xl shadow-lg transform translate-x-full transition-transform duration-300 z-50 flex items-center gap-2">
+        <span class="material-symbols-outlined">check_circle</span>
+        <span id="notification-message">Notification</span>
+    </div>
+
+   <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pb-6 pt-2 z-50">
+        <div class="flex items-center justify-around max-w-container mx-auto">
+            <a href="./Home.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-[10px] font-medium">Accueil</span>
+            </a>
+            <a href="./services.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">business_center</span>
+                <span class="text-[10px] font-medium">Services</span>
+            </a>
+            <a href="./booking.html" class="flex flex-col items-center gap-1 text-primary">
+                <span class="material-symbols-outlined fill-1">calendar_month</span>
+                <span class="text-[10px] font-medium">Réservations</span>
+            </a>
+            <a href="./aboutus.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">info</span>
+                <span class="text-[10px] font-medium">À Propos</span>
+            </a>
+            <a href="./support.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">contact_support</span>
+                <span class="text-[10px] font-medium">Aide</span>
+            </a>
+        </div>
+    </nav>
+
+
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('darkMode', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('darkMode', 'dark');
+            }
+        }
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+
+        // Payment Method Selection
+        function selectPayment(method) {
+            // Reset all payment methods
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected', 'border-primary', 'bg-primary/5');
+                el.classList.add('border-slate-200', 'dark:border-slate-700');
+                el.querySelector('div:last-child').innerHTML = '';
+            });
+            
+            // Highlight selected
+            const selectedEl = document.getElementById(`payment-${method}`);
+            selectedEl.classList.remove('border-slate-200', 'dark:border-slate-700');
+            selectedEl.classList.add('selected', 'border-primary', 'bg-primary/5');
+            selectedEl.querySelector('div:last-child').innerHTML = '<div class="w-3 h-3 rounded-full bg-primary"></div>';
+            
+            // Smooth scroll to the selected form
+            document.getElementById(`${method}-form`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Simulate Payment and Show Notification
+        function simulatePayment(method) {
+            let methodName = '';
+            switch(method) {
+                case 'mtn': methodName = 'MTN MoMo'; break;
+                case 'airtel': methodName = 'Airtel Money'; break;
+                case 'bank': methodName = 'Virement Bancaire'; break;
+                case 'card': methodName = 'Carte Bancaire'; break;
+                case 'cash': methodName = 'Paiement en agence'; break;
+            }
+            
+            showNotification(`✅ Demande de paiement envoyée via ${methodName}. Vous recevrez une notification sur votre téléphone.`);
+        }
+
+        // Show Notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notification-message');
+            notificationMessage.textContent = message;
+            notification.classList.remove('translate-x-full');
+            
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

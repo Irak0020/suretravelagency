@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" name="viewport">
+    <title>Sure Travel Agency - Nos Services</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f49bd",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-1 {
+            font-variation-settings: 'FILL' 1;
+        }
+        @media (min-width: 768px) {
+            .max-w-container {
+                max-width: 768px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        .service-card {
+            transition: transform 0.2s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Header / Top Bar -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3">
+        <div class="flex items-center justify-between max-w-container mx-auto w-full">
+            <a href="index.html" class="flex items-center gap-3">
+                <!-- New Logo Image -->
+                <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden p-1">
+                    <img alt="Sure Travel Agency Logo" class="w-full h-full object-contain" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCABkAGQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/Z">
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold leading-tight tracking-tight text-slate-900 dark:text-white">SURE</h1>
+                    <p class="text-[8px] uppercase tracking-widest text-primary font-bold">TRAVEL AGENCY</p>
+                </div>
+            </a>
+            <div class="flex items-center gap-2">
+                <a href="search.html" class="p-2 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">search</span>
+                </a>
+                <button onclick="toggleDarkMode()" class="p-2 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:inline">light_mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-container mx-auto w-full pb-24 px-4">
+        <!-- Page Header -->
+        <div class="pt-6 pb-4">
+            <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Nos Services</h2>
+            <p class="text-slate-500 dark:text-slate-400 mt-1">Des solutions complètes pour tous vos voyages</p>
+        </div>
+
+        <!-- Service Categories Tabs -->
+        <div class="flex overflow-x-auto no-scrollbar gap-2 pb-4 mb-2">
+            <button onclick="scrollToService('flights')" class="whitespace-nowrap px-4 py-2 rounded-full bg-primary text-white text-sm font-semibold">Tous</button>
+            <button onclick="scrollToService('flights')" class="whitespace-nowrap px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-primary/20 text-sm font-medium hover:bg-primary/5 transition-colors">Vols</button>
+            <button onclick="scrollToService('hotels')" class="whitespace-nowrap px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-primary/20 text-sm font-medium hover:bg-primary/5 transition-colors">Hôtels</button>
+            <button onclick="scrollToService('cars')" class="whitespace-nowrap px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-primary/20 text-sm font-medium hover:bg-primary/5 transition-colors">Voitures</button>
+            <button onclick="scrollToService('assistance')" class="whitespace-nowrap px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-primary/20 text-sm font-medium hover:bg-primary/5 transition-colors">Assistance</button>
+            <button onclick="scrollToService('forfaits')" class="whitespace-nowrap px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-primary/20 text-sm font-medium hover:bg-primary/5 transition-colors">Forfaits</button>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="space-y-6">
+            <!-- Service Card 1: Billets d'avion -->
+            <div id="flights" class="service-card bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 scroll-mt-24">
+                <div class="relative h-48 md:h-56 w-full">
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-white text-3xl">flight_takeoff</span>
+                        <h3 class="text-white font-bold text-xl">Billets d'avion</h3>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold">
+                        -15% ce mois-ci
+                    </div>
+                </div>
+                <div class="p-5">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                        Trouvez les meilleurs tarifs pour vos vols nationaux et internationaux. Nous négocions pour vous les prix les plus compétitifs auprès de plus de 500 compagnies aériennes.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div class="bg-primary/5 rounded-lg p-2 text-center">
+                            <p class="text-xs text-slate-500">Vols domestiques</p>
+                            <p class="font-bold text-primary">dès 45€</p>
+                        </div>
+                        <div class="bg-primary/5 rounded-lg p-2 text-center">
+                            <p class="text-xs text-slate-500">Vols internationaux</p>
+                            <p class="font-bold text-primary">dès 199€</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a href="booking.html?service=flight" class="flex-1 py-3 bg-primary text-white rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors text-center flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">search</span>
+                            Rechercher un vol
+                        </a>
+                        <a href="faq.html#flights" class="flex-1 py-3 border border-primary text-primary rounded-lg font-semibold text-sm hover:bg-primary/5 transition-colors text-center">
+                            En savoir plus
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Card 2: Hôtels de luxe -->
+            <div id="hotels" class="service-card bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 scroll-mt-24">
+                <div class="relative h-48 md:h-56 w-full">
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-white text-3xl">hotel</span>
+                        <h3 class="text-white font-bold text-xl">Hôtels de luxe</h3>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold">
+                        1000+ établissements
+                    </div>
+                </div>
+                <div class="p-5">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                        Une sélection rigoureuse d'hôtels prestigieux pour un séjour inoubliable, alliant confort, élégance et service d'exception. Du boutique-hôtel au palace 5 étoiles.
+                    </p>
+                    <div class="grid grid-cols-3 gap-2 mb-4">
+                        <div class="text-center">
+                            <span class="material-symbols-outlined text-primary text-xl">star</span>
+                            <p class="text-xs">Luxe</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="material-symbols-outlined text-primary text-xl">spa</span>
+                            <p class="text-xs">Spa</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="material-symbols-outlined text-primary text-xl">restaurant</span>
+                            <p class="text-xs">Gastronomie</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a href="booking.html?service=hotel" class="flex-1 py-3 bg-primary text-white rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors text-center flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">search</span>
+                            Trouver un hôtel
+                        </a>
+                        <a href="faq.html#hotels" class="flex-1 py-3 border border-primary text-primary rounded-lg font-semibold text-sm hover:bg-primary/5 transition-colors text-center">
+                            En savoir plus
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Card 3: Location de voitures -->
+            <div id="cars" class="service-card bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 scroll-mt-24">
+                <div class="relative h-48 md:h-56 w-full">
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-white text-3xl">directions_car</span>
+                        <h3 class="text-white font-bold text-xl">Location de voitures</h3>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold">
+                        Sans franchise
+                    </div>
+                </div>
+                <div class="p-5">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                        Louez des véhicules récents et entretenus pour vos déplacements en toute liberté, avec ou sans chauffeur. Berlines, SUV, 4x4, ou véhicules économiques.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div class="bg-primary/5 rounded-lg p-2 text-center">
+                            <p class="text-xs text-slate-500">Économique</p>
+                            <p class="font-bold text-primary">dès 25€/jour</p>
+                        </div>
+                        <div class="bg-primary/5 rounded-lg p-2 text-center">
+                            <p class="text-xs text-slate-500">SUV/Prestige</p>
+                            <p class="font-bold text-primary">dès 65€/jour</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a href="booking.html?service=car" class="flex-1 py-3 bg-primary text-white rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors text-center flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">search</span>
+                            Réserver une voiture
+                        </a>
+                        <a href="faq.html#cars" class="flex-1 py-3 border border-primary text-primary rounded-lg font-semibold text-sm hover:bg-primary/5 transition-colors text-center">
+                            En savoir plus
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Card 4: Assistance voyage 24/7 -->
+            <div id="assistance" class="service-card bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 scroll-mt-24">
+                <div class="relative h-48 md:h-56 w-full">
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-white text-3xl">support_agent</span>
+                        <h3 class="text-white font-bold text-xl">Assistance voyage 24/7</h3>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold">
+                        24h/24 - 7j/7
+                    </div>
+                </div>
+                <div class="p-5">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                        Partez serein avec notre support client disponible à tout moment pour répondre à vos urgences partout dans le monde. Assistance médicale, perte de bagages, rapatriement.
+                    </p>
+                    <div class="grid grid-cols-3 gap-2 mb-4">
+                        <div class="text-center">
+                            <span class="material-symbols-outlined text-primary text-xl">medical_services</span>
+                            <p class="text-xs">Médical</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="material-symbols-outlined text-primary text-xl">luggage</span>
+                            <p class="text-xs">Bagages</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="material-symbols-outlined text-primary text-xl">flight</span>
+                            <p class="text-xs">Vols</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a href="support.html" class="flex-1 py-3 bg-primary text-white rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors text-center flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">chat</span>
+                            Contacter l'assistance
+                        </a>
+                        <a href="faq.html" class="flex-1 py-3 border border-primary text-primary rounded-lg font-semibold text-sm hover:bg-primary/5 transition-colors text-center">
+                            FAQ
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Card 5: Forfaits vacances -->
+            <div id="forfaits" class="service-card bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 scroll-mt-24">
+                <div class="relative h-48 md:h-56 w-full">
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-white text-3xl">beach_access</span>
+                        <h3 class="text-white font-bold text-xl">Forfaits vacances</h3>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold">
+                        Jusqu'à -30%
+                    </div>
+                </div>
+                <div class="p-5">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                        Des forfaits tout compris aux mesures de vos envies. Vol + Hôtel + Transferts + Activités, à des prix négociés pour vous. Découvrez nos destinations coups de cœur.
+                    </p>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="bg-primary/5 rounded-lg p-2">
+                            <p class="font-bold text-sm">Safari Tanzanie</p>
+                            <p class="text-xs text-primary">7j/6n dès 1200€</p>
+                        </div>
+                        <div class="bg-primary/5 rounded-lg p-2">
+                            <p class="font-bold text-sm">Maldives</p>
+                            <p class="text-xs text-primary">5j/4n dès 890€</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a href="booking.html?service=package" class="flex-1 py-3 bg-primary text-white rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors text-center">
+                            Voir tous les forfaits
+                        </a>
+                        <a href="testimonials.html" class="flex-1 py-3 border border-primary text-primary rounded-lg font-semibold text-sm hover:bg-primary/5 transition-colors text-center">
+                            Avis clients
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Choose Us Banner -->
+        <div class="mt-8 p-6 bg-gradient-to-r from-primary to-primary/80 rounded-2xl text-white">
+            <h3 class="text-xl font-bold mb-3 flex items-center gap-2">
+                <span class="material-symbols-outlined">workspace_premium</span>
+                Pourquoi nos services sont les meilleurs ?
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div>
+                    <span class="material-symbols-outlined text-3xl mb-1">verified</span>
+                    <p class="text-sm font-semibold">Certifié IATA</p>
+                </div>
+                <div>
+                    <span class="material-symbols-outlined text-3xl mb-1">support_agent</span>
+                    <p class="text-sm font-semibold">Support 24/7</p>
+                </div>
+                <div>
+                    <span class="material-symbols-outlined text-3xl mb-1">payments</span>
+                    <p class="text-sm font-semibold">Meilleurs prix</p>
+                </div>
+                <div>
+                    <span class="material-symbols-outlined text-3xl mb-1">lock</span>
+                    <p class="text-sm font-semibold">Paiement sécurisé</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact CTA -->
+        <div class="mt-8 p-6 bg-primary/5 dark:bg-primary/10 rounded-2xl border border-primary/10 text-center">
+            <h3 class="text-primary font-bold text-lg mb-2">Vous ne trouvez pas ce que vous cherchez ?</h3>
+            <p class="text-slate-600 dark:text-slate-400 mb-4">Nos experts sont là pour créer un voyage sur mesure pour vous.</p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="support.html" class="inline-flex items-center justify-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                    <span class="material-symbols-outlined">chat</span>
+                    Contacter un expert
+                </a>
+                <a href="tel:+25779639803" class="inline-flex items-center justify-center gap-2 border border-primary text-primary px-6 py-3 rounded-xl font-semibold hover:bg-primary/5 transition-colors">
+                    <span class="material-symbols-outlined">call</span>
+                    +257 79 639 803
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+   <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pb-6 pt-2 z-50">
+        <div class="flex items-center justify-around max-w-container mx-auto">
+            <a href="./Home.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-[10px] font-medium">Accueil</span>
+            </a>
+            <a href="./services.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">business_center</span>
+                <span class="text-[10px] font-medium">Services</span>
+            </a>
+            <a href="./booking.html" class="flex flex-col items-center gap-1 text-primary">
+                <span class="material-symbols-outlined fill-1">calendar_month</span>
+                <span class="text-[10px] font-medium">Réservations</span>
+            </a>
+            <a href="./aboutus.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">info</span>
+                <span class="text-[10px] font-medium">À Propos</span>
+            </a>
+            <a href="./support.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">contact_support</span>
+                <span class="text-[10px] font-medium">Aide</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('darkMode', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('darkMode', 'dark');
+            }
+        }
+        
+        function scrollToService(serviceId) {
+            const element = document.getElementById(serviceId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+        
+        // Check URL hash on load
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                setTimeout(() => {
+                    scrollToService(hash);
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>

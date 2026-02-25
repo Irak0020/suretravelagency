@@ -1,0 +1,292 @@
+ <!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" name="viewport">
+    <title>Sure Travel Agency - Accueil</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f49bd",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-1 {
+            font-variation-settings: 'FILL' 1;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @media (min-width: 768px) {
+            .max-w-container {
+                max-width: 768px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Header / Top Bar -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3">
+        <div class="flex items-center justify-between max-w-container mx-auto w-full">
+            <a href="index.html" class="flex items-center gap-3">
+                <!-- New Logo Image -->
+                <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden p-1">
+                    <img alt="Sure Travel Agency Logo" class="w-full h-full object-contain" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCABkAGQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/Z">
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold leading-tight tracking-tight text-slate-900 dark:text-white">SURE</h1>
+                    <p class="text-[8px] uppercase tracking-widest text-primary font-bold">TRAVEL AGENCY</p>
+                </div>
+            </a>
+            <div class="flex items-center gap-2">
+                <a href="search.html" class="p-2 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">search</span>
+                </a>
+                <button onclick="toggleDarkMode()" class="p-2 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:inline">light_mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-container mx-auto w-full pb-24 px-4">
+        <!-- Hero Section -->
+        <section class="pt-8 pb-6 bg-gradient-to-b from-primary/5 to-transparent rounded-2xl px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2">Voyagez en toute confiance</h2>
+            <p class="text-slate-500 dark:text-slate-400 mb-6">Découvrez nos solutions de voyage sur mesure avec Sure Travel Agency.</p>
+            <a href="booking.html" class="block w-full md:w-auto md:inline-block md:px-8 bg-primary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/30 text-center hover:bg-primary/90 transition-all">
+                Réserver maintenant
+            </a>
+        </section>
+
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-8">
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-4 text-center shadow-sm">
+                <span class="material-symbols-outlined text-primary text-3xl mb-1">flight</span>
+                <p class="text-xl font-bold text-slate-900 dark:text-white">500+</p>
+                <p class="text-xs text-slate-500">Destinations</p>
+            </div>
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-4 text-center shadow-sm">
+                <span class="material-symbols-outlined text-primary text-3xl mb-1">hotel</span>
+                <p class="text-xl font-bold text-slate-900 dark:text-white">1000+</p>
+                <p class="text-xs text-slate-500">Hôtels</p>
+            </div>
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-4 text-center shadow-sm">
+                <span class="material-symbols-outlined text-primary text-3xl mb-1">sentiment_satisfied</span>
+                <p class="text-xl font-bold text-slate-900 dark:text-white">5000+</p>
+                <p class="text-xs text-slate-500">Clients</p>
+            </div>
+        </div>
+
+        <!-- Quick Actions Grid -->
+        <div class="mb-8">
+            <h3 class="text-lg font-bold mb-4">Nos Services</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="services.html#flights" class="bg-white dark:bg-slate-800 rounded-xl p-5 border border-primary/10 hover:border-primary/30 transition-all text-center">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-2">flight_takeoff</span>
+                    <h4 class="font-bold text-sm">Billets d'avion</h4>
+                    <p class="text-xs text-slate-500">Meilleurs tarifs</p>
+                </a>
+                <a href="services.html#hotels" class="bg-white dark:bg-slate-800 rounded-xl p-5 border border-primary/10 hover:border-primary/30 transition-all text-center">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-2">hotel</span>
+                    <h4 class="font-bold text-sm">Hôtels</h4>
+                    <p class="text-xs text-slate-500">Luxe & confort</p>
+                </a>
+                <a href="services.html#cars" class="bg-white dark:bg-slate-800 rounded-xl p-5 border border-primary/10 hover:border-primary/30 transition-all text-center">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-2">directions_car</span>
+                    <h4 class="font-bold text-sm">Location</h4>
+                    <p class="text-xs text-slate-500">Voitures</p>
+                </a>
+                <a href="services.html#assistance" class="bg-white dark:bg-slate-800 rounded-xl p-5 border border-primary/10 hover:border-primary/30 transition-all text-center">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-2">support_agent</span>
+                    <h4 class="font-bold text-sm">Assistance</h4>
+                    <p class="text-xs text-slate-500">24/7</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- Featured Destinations -->
+        <div class="mb-8">
+            <h3 class="text-lg font-bold mb-4">Destinations populaires</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm">
+                    <div class="h-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
+                    <div class="p-4">
+                        <p class="font-bold">Paris</p>
+                        <p class="text-sm text-slate-500">À partir de 350€</p>
+                        <a href="booking.html?destination=paris" class="mt-2 text-primary text-sm font-semibold inline-block">Réserver →</a>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm">
+                    <div class="h-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
+                    <div class="p-4">
+                        <p class="font-bold">Maldives</p>
+                        <p class="text-sm text-slate-500">À partir de 890€</p>
+                        <a href="booking.html?destination=maldives" class="mt-2 text-primary text-sm font-semibold inline-block">Réserver →</a>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm">
+                    <div class="h-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
+                    <div class="p-4">
+                        <p class="font-bold">Safari</p>
+                        <p class="text-sm text-slate-500">À partir de 1200€</p>
+                        <a href="booking.html?destination=safari" class="mt-2 text-primary text-sm font-semibold inline-block">Réserver →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Choose Us -->
+        <div class="mb-8">
+            <div class="bg-primary/5 dark:bg-primary/10 rounded-2xl p-6">
+                <h3 class="text-lg font-bold mb-4">Pourquoi nous choisir ?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary">verified</span>
+                        <div>
+                            <p class="font-bold">Service certifié</p>
+                            <p class="text-sm text-slate-500">Agence agréée IATA</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary">support_agent</span>
+                        <div>
+                            <p class="font-bold">Support 24/7</p>
+                            <p class="text-sm text-slate-500">Assistance en cas d'urgence</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary">payments</span>
+                        <div>
+                            <p class="font-bold">Meilleurs prix</p>
+                            <p class="text-sm text-slate-500">Tarifs négociés pour vous</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonial Preview -->
+        <div class="mb-8">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold">Avis clients</h3>
+                <a href="testimonials.html" class="text-primary text-sm font-semibold">Voir tout</a>
+            </div>
+            <a href="testimonials.html" class="block bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm hover:border-primary/30 transition-all">
+                <div class="flex items-center gap-2 mb-3">
+                    <div class="flex text-primary">
+                        <span class="material-symbols-outlined fill-1 text-sm">star</span>
+                        <span class="material-symbols-outlined fill-1 text-sm">star</span>
+                        <span class="material-symbols-outlined fill-1 text-sm">star</span>
+                        <span class="material-symbols-outlined fill-1 text-sm">star</span>
+                        <span class="material-symbols-outlined fill-1 text-sm">star</span>
+                    </div>
+                    <span class="text-xs text-slate-500">Il y a 2 jours</span>
+                </div>
+                <p class="text-sm italic">"Une expérience inoubliable ! L'organisation était parfaite du début à la fin."</p>
+                <p class="text-xs font-bold mt-2">— Sophie Laurent</p>
+            </a>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="p-6 bg-primary/5 dark:bg-primary/10 rounded-2xl border border-primary/10 mb-8">
+            <h3 class="text-primary font-bold mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined">contact_support</span>
+                Contactez-nous
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary text-xl">phone</span>
+                    <div>
+                        <p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Téléphones</p>
+                        <a href="tel:+25779639803" class="font-medium text-slate-800 dark:text-slate-200 block">+257 79 639 803</a>
+                        <a href="tel:+25769314640" class="font-medium text-slate-800 dark:text-slate-200 block">+257 69 314 640</a>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary text-xl">person</span>
+                    <div>
+                        <p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Direction</p>
+                        <p class="font-medium text-slate-800 dark:text-slate-200">Kanyoge Celine & Keza Nadia</p>
+                    </div>
+                </div>
+            </div>
+            <a href="support.html" class="block w-full md:w-auto md:inline-block bg-primary text-white text-center py-3 px-6 rounded-xl font-semibold text-sm hover:bg-primary/90 transition-colors mt-4">
+                Besoin d'aide ?
+            </a>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pb-6 pt-2 z-50">
+        <div class="flex items-center justify-around max-w-container mx-auto">
+            <a href="index.html" class="flex flex-col items-center gap-1 text-primary">
+                <span class="material-symbols-outlined fill-1">home</span>
+                <span class="text-[10px] font-medium">Accueil</span>
+            </a>
+            <a href="services.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">business_center</span>
+                <span class="text-[10px] font-medium">Services</span>
+            </a>
+            <a href="booking.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <span class="text-[10px] font-medium">Réservations</span>
+            </a>
+            <a href="about.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">info</span>
+                <span class="text-[10px] font-medium">À Propos</span>
+            </a>
+            <a href="support.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">contact_support</span>
+                <span class="text-[10px] font-medium">Aide</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('darkMode', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('darkMode', 'dark');
+            }
+        }
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" name="viewport">
+    <title>Sure Travel Agency - Réservation</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f49bd",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-1 {
+            font-variation-settings: 'FILL' 1;
+        }
+        @media (min-width: 768px) {
+            .max-w-container {
+                max-width: 768px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        .form-input:focus {
+            box-shadow: 0 0 0 4px rgba(15, 73, 189, 0.1);
+        }
+        .service-option {
+            transition: all 0.2s ease;
+        }
+        .service-option:hover {
+            border-color: #0f49bd;
+            background-color: rgba(15, 73, 189, 0.05);
+        }
+        .service-option.selected {
+            border-color: #0f49bd;
+            background-color: rgba(15, 73, 189, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Header / Top Bar -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3">
+        <div class="flex items-center justify-between max-w-container mx-auto w-full">
+            <a href="index.html" class="flex items-center gap-3">
+                <!-- New Logo Image -->
+                <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden p-1">
+                    <img alt="Sure Travel Agency Logo" class="w-full h-full object-contain" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCABkAGQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/Z">
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold leading-tight tracking-tight text-slate-900 dark:text-white">SURE</h1>
+                    <p class="text-[8px] uppercase tracking-widest text-primary font-bold">TRAVEL AGENCY</p>
+                </div>
+            </a>
+            <div class="flex items-center gap-2">
+                <a href="search.html" class="p-2 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">search</span>
+                </a>
+                <button onclick="toggleDarkMode()" class="p-2 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:inline">light_mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-container mx-auto w-full pb-24 px-4">
+        <!-- Page Header -->
+        <div class="pt-6 pb-4">
+            <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Réserver votre voyage</h2>
+            <p class="text-slate-500 dark:text-slate-400 mt-1">Remplissez les informations ci-dessous pour commencer</p>
+        </div>
+
+        <!-- Service Type Selection -->
+        <div class="mb-6">
+            <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 block">Type de service</label>
+            <div class="grid grid-cols-3 gap-2">
+                <button onclick="selectService('flight')" id="service-flight" class="service-option selected flex flex-col items-center p-4 rounded-xl border-2 border-primary bg-primary/10">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-1 fill-1">flight</span>
+                    <span class="font-bold text-sm">Vol</span>
+                </button>
+                <button onclick="selectService('hotel')" id="service-hotel" class="service-option flex flex-col items-center p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-primary/50">
+                    <span class="material-symbols-outlined text-slate-500 text-3xl mb-1">hotel</span>
+                    <span class="font-bold text-sm text-slate-500">Hôtel</span>
+                </button>
+                <button onclick="selectService('car')" id="service-car" class="service-option flex flex-col items-center p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-primary/50">
+                    <span class="material-symbols-outlined text-slate-500 text-3xl mb-1">directions_car</span>
+                    <span class="font-bold text-sm text-slate-500">Voiture</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <form class="space-y-6 bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-primary/10 mb-6">
+            <!-- Trip Type (for flights) -->
+            <div id="trip-type-section" class="flex gap-4 pb-2 border-b border-slate-200 dark:border-slate-700">
+                <label class="flex items-center gap-2">
+                    <input type="radio" name="trip-type" value="roundtrip" checked class="text-primary focus:ring-primary/20">
+                    <span class="text-sm font-medium">Aller-retour</span>
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="radio" name="trip-type" value="oneway" class="text-primary focus:ring-primary/20">
+                    <span class="text-sm font-medium">Aller simple</span>
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="radio" name="trip-type" value="multicity" class="text-primary focus:ring-primary/20">
+                    <span class="text-sm font-medium">Multi-destinations</span>
+                </label>
+            </div>
+
+            <!-- Locations -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Départ / Origine</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">flight_takeoff</span>
+                        <input type="text" placeholder="Ville de départ" class="w-full h-14 pl-10 pr-4 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all form-input" value="Bujumbura (BJM)">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Destination</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">flight_land</span>
+                        <input type="text" placeholder="Ville d'arrivée" class="w-full h-14 pl-10 pr-4 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all form-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dates -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Date de départ</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">calendar_today</span>
+                        <input type="date" class="w-full h-14 pl-10 pr-4 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all form-input" value="2026-03-15">
+                    </div>
+                </div>
+                <div id="return-date-section">
+                    <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Date de retour</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">calendar_month</span>
+                        <input type="date" class="w-full h-14 pl-10 pr-4 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all form-input" value="2026-03-22">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passengers and Class -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Passagers</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">group</span>
+                        <select class="w-full h-14 pl-10 pr-4 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all appearance-none">
+                            <option>1 Adulte</option>
+                            <option selected>2 Adultes</option>
+                            <option>2 Adultes, 1 Enfant</option>
+                            <option>2 Adultes, 2 Enfants</option>
+                            <option>3 Adultes</option>
+                            <option>4 Adultes</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Classe</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">seat</span>
+                        <select class="w-full h-14 pl-10 pr-4 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all appearance-none">
+                            <option>Économique</option>
+                            <option>Économique Premium</option>
+                            <option>Affaires</option>
+                            <option>Première classe</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Options (Hotel/Car specific) -->
+            <div id="hotel-options" class="hidden p-4 bg-primary/5 rounded-xl">
+                <h4 class="font-bold mb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">hotel</span>
+                    Options d'hébergement
+                </h4>
+                <div class="space-y-3">
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" class="rounded text-primary focus:ring-primary/20">
+                        <span class="text-sm">Petit-déjeuner inclus</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" class="rounded text-primary focus:ring-primary/20">
+                        <span class="text-sm">Navette aéroport</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" class="rounded text-primary focus:ring-primary/20">
+                        <span class="text-sm">Annulation gratuite</span>
+                    </label>
+                </div>
+            </div>
+
+            <div id="car-options" class="hidden p-4 bg-primary/5 rounded-xl">
+                <h4 class="font-bold mb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">directions_car</span>
+                    Options de véhicule
+                </h4>
+                <div class="space-y-3">
+                    <label class="flex items-center gap-2">
+                        <input type="radio" name="car-type" class="text-primary focus:ring-primary/20">
+                        <span class="text-sm">Économique</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="radio" name="car-type" checked class="text-primary focus:ring-primary/20">
+                        <span class="text-sm">Berline</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="radio" name="car-type" class="text-primary focus:ring-primary/20">
+                        <span class="text-sm">SUV</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="radio" name="car-type" class="text-primary focus:ring-primary/20">
+                        <span class="text-sm">Luxe / Prestige</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Promo Code -->
+            <div>
+                <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Code promo</label>
+                <div class="flex gap-2">
+                    <div class="relative flex-1">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">confirmation_number</span>
+                        <input type="text" placeholder="Entrez votre code" class="w-full h-14 pl-10 pr-4 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all form-input">
+                    </div>
+                    <button type="button" class="px-6 h-14 border-2 border-primary text-primary rounded-xl font-semibold hover:bg-primary/5 transition-colors">
+                        Appliquer
+                    </button>
+                </div>
+            </div>
+
+            <!-- Price Summary -->
+            <div class="bg-primary/5 p-4 rounded-xl">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm text-slate-600">Prix estimé</span>
+                    <span class="text-xs text-green-600 font-semibold">Meilleur prix garanti</span>
+                </div>
+                <div class="flex justify-between items-end">
+                    <div>
+                        <p class="text-xs text-slate-500">Tout compris, taxes incluses</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-2xl font-bold text-primary">450 000</span>
+                        <span class="text-xs text-slate-500 ml-1">BIF</span>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">* Prix basé sur les options sélectionnées</p>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full bg-primary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/30 hover:bg-primary/90 transition-all flex items-center justify-center gap-2 text-lg">
+                <span class="material-symbols-outlined">search</span>
+                Rechercher les meilleures offres
+            </button>
+        </form>
+
+        <!-- Why Book With Us -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+            <div class="text-center p-3">
+                <span class="material-symbols-outlined text-primary text-3xl">lock</span>
+                <p class="text-xs font-semibold">Paiement sécurisé</p>
+            </div>
+            <div class="text-center p-3">
+                <span class="material-symbols-outlined text-primary text-3xl">support_agent</span>
+                <p class="text-xs font-semibold">Support 24/7</p>
+            </div>
+            <div class="text-center p-3">
+                <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+                <p class="text-xs font-semibold">Sans frais cachés</p>
+            </div>
+            <div class="text-center p-3">
+                <span class="material-symbols-outlined text-primary text-3xl">schedule</span>
+                <p class="text-xs font-semibold">Confirmation instantanée</p>
+            </div>
+        </div>
+
+        <!-- Popular Destinations Quick Links -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-primary/10 mb-8">
+            <h3 class="font-bold mb-3 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">star</span>
+                Destinations populaires
+            </h3>
+            <div class="flex flex-wrap gap-2">
+                <a href="#" class="px-3 py-2 bg-primary/5 rounded-full text-xs hover:bg-primary/10 transition-colors">Paris</a>
+                <a href="#" class="px-3 py-2 bg-primary/5 rounded-full text-xs hover:bg-primary/10 transition-colors">Dubai</a>
+                <a href="#" class="px-3 py-2 bg-primary/5 rounded-full text-xs hover:bg-primary/10 transition-colors">Istanbul</a>
+                <a href="#" class="px-3 py-2 bg-primary/5 rounded-full text-xs hover:bg-primary/10 transition-colors">Nairobi</a>
+                <a href="#" class="px-3 py-2 bg-primary/5 rounded-full text-xs hover:bg-primary/10 transition-colors">Johannesburg</a>
+                <a href="#" class="px-3 py-2 bg-primary/5 rounded-full text-xs hover:bg-primary/10 transition-colors">Bruxelles</a>
+                <a href="#" class="px-3 py-2 bg-primary/5 rounded-full text-xs hover:bg-primary/10 transition-colors">New York</a>
+                <a href="#" class="px-3 py-2 bg-primary/5 rounded-full text-xs hover:bg-primary/10 transition-colors">Londres</a>
+            </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="p-5 bg-primary/5 dark:bg-primary/10 rounded-2xl border border-primary/10 mb-8">
+            <h3 class="font-bold mb-3 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">contact_support</span>
+                Besoin d'aide pour votre réservation ?
+            </h3>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a href="tel:+25779639803" class="flex-1 flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                    <span class="material-symbols-outlined">call</span>
+                    Appeler
+                </a>
+                <a href="support.html" class="flex-1 flex items-center justify-center gap-2 border border-primary text-primary py-3 rounded-xl font-semibold hover:bg-primary/5 transition-colors">
+                    <span class="material-symbols-outlined">chat</span>
+                    Chat en ligne
+                </a>
+            </div>
+        </div>
+    </main>
+
+     <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pb-6 pt-2 z-50">
+        <div class="flex items-center justify-around max-w-container mx-auto">
+            <a href="./Home.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-[10px] font-medium">Accueil</span>
+            </a>
+            <a href="./services.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">business_center</span>
+                <span class="text-[10px] font-medium">Services</span>
+            </a>
+            <a href="./booking.html" class="flex flex-col items-center gap-1 text-primary">
+                <span class="material-symbols-outlined fill-1">calendar_month</span>
+                <span class="text-[10px] font-medium">Réservations</span>
+            </a>
+            <a href="./aboutus.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">info</span>
+                <span class="text-[10px] font-medium">À Propos</span>
+            </a>
+            <a href="./support.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">contact_support</span>
+                <span class="text-[10px] font-medium">Aide</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('darkMode', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('darkMode', 'dark');
+            }
+        }
+        
+        function selectService(service) {
+            // Reset all
+            document.getElementById('service-flight').classList.remove('selected', 'border-primary', 'bg-primary/10');
+            document.getElementById('service-hotel').classList.remove('selected', 'border-primary', 'bg-primary/10');
+            document.getElementById('service-car').classList.remove('selected', 'border-primary', 'bg-primary/10');
+            
+            document.getElementById('service-flight').classList.add('border-slate-200', 'dark:border-slate-700');
+            document.getElementById('service-hotel').classList.add('border-slate-200', 'dark:border-slate-700');
+            document.getElementById('service-car').classList.add('border-slate-200', 'dark:border-slate-700');
+            
+            document.getElementById('service-flight').querySelector('.material-symbols-outlined').classList.remove('fill-1', 'text-primary');
+            document.getElementById('service-hotel').querySelector('.material-symbols-outlined').classList.remove('fill-1', 'text-primary');
+            document.getElementById('service-car').querySelector('.material-symbols-outlined').classList.remove('fill-1', 'text-primary');
+            
+            document.getElementById('service-flight').querySelector('.material-symbols-outlined').classList.add('text-slate-500');
+            document.getElementById('service-hotel').querySelector('.material-symbols-outlined').classList.add('text-slate-500');
+            document.getElementById('service-car').querySelector('.material-symbols-outlined').classList.add('text-slate-500');
+            
+            document.getElementById('service-flight').querySelector('span:last-child').classList.add('text-slate-500');
+            document.getElementById('service-hotel').querySelector('span:last-child').classList.add('text-slate-500');
+            document.getElementById('service-car').querySelector('span:last-child').classList.add('text-slate-500');
+            
+            // Activate selected
+            document.getElementById(`service-${service}`).classList.remove('border-slate-200', 'dark:border-slate-700');
+            document.getElementById(`service-${service}`).classList.add('selected', 'border-primary', 'bg-primary/10');
+            
+            document.getElementById(`service-${service}`).querySelector('.material-symbols-outlined').classList.remove('text-slate-500');
+            document.getElementById(`service-${service}`).querySelector('.material-symbols-outlined').classList.add('fill-1', 'text-primary');
+            
+            document.getElementById(`service-${service}`).querySelector('span:last-child').classList.remove('text-slate-500');
+            document.getElementById(`service-${service}`).querySelector('span:last-child').classList.add('text-primary');
+            
+            // Show/hide options
+            document.getElementById('hotel-options').classList.add('hidden');
+            document.getElementById('car-options').classList.add('hidden');
+            
+            if (service === 'hotel') {
+                document.getElementById('hotel-options').classList.remove('hidden');
+                document.getElementById('trip-type-section').classList.add('hidden');
+                document.getElementById('return-date-section').classList.add('hidden');
+            } else if (service === 'car') {
+                document.getElementById('car-options').classList.remove('hidden');
+                document.getElementById('trip-type-section').classList.add('hidden');
+                document.getElementById('return-date-section').classList.remove('hidden');
+            } else {
+                document.getElementById('trip-type-section').classList.remove('hidden');
+                document.getElementById('return-date-section').classList.remove('hidden');
+            }
+        }
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+        
+        // Check URL params for service
+        const urlParams = new URLSearchParams(window.location.search);
+        const service = urlParams.get('service');
+        if (service) {
+            selectService(service);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" name="viewport">
+    <title>Sure Travel Agency - Support Client</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f49bd",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-1 {
+            font-variation-settings: 'FILL' 1;
+        }
+        @media (min-width: 768px) {
+            .max-w-container {
+                max-width: 768px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .support-card {
+            transition: all 0.2s ease;
+        }
+        .support-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(15, 73, 189, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Header / Top Bar -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3">
+        <div class="flex items-center justify-between max-w-container mx-auto w-full">
+            <a href="index.html" class="flex items-center gap-3">
+                <!-- New Logo Image -->
+                <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden p-1">
+                    <img alt="Sure Travel Agency Logo" class="w-full h-full object-contain" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCABkAGQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/Z">
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold leading-tight tracking-tight text-slate-900 dark:text-white">SURE</h1>
+                    <p class="text-[8px] uppercase tracking-widest text-primary font-bold">TRAVEL AGENCY</p>
+                </div>
+            </a>
+            <div class="flex items-center gap-2">
+                <a href="search.html" class="p-2 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">search</span>
+                </a>
+                <button onclick="toggleDarkMode()" class="p-2 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:inline">light_mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-container mx-auto w-full pb-24 px-4">
+        <!-- Hero Search Section -->
+        <div class="pt-6 pb-8 bg-gradient-to-b from-primary/5 to-transparent rounded-2xl px-4 -mx-4">
+            <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-2">Comment pouvons-nous vous aider ?</h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-6">Trouvez des réponses rapides ou contactez nos experts</p>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                    <span class="material-symbols-outlined text-primary">search</span>
+                </div>
+                <input class="w-full bg-white dark:bg-slate-800 border-2 border-transparent focus:border-primary rounded-xl py-4 pl-12 pr-4 shadow-lg focus:ring-4 focus:ring-primary/20 text-sm outline-none transition-all" placeholder="Rechercher une question (ex: Paiement, bagages, annulation...)">
+            </div>
+        </div>
+
+        <!-- Quick Help Categories -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 my-6">
+            <a href="#reservations" class="support-card bg-white dark:bg-slate-800 rounded-xl p-4 text-center shadow-sm border border-primary/10">
+                <span class="material-symbols-outlined text-primary text-3xl mb-2">booking</span>
+                <h4 class="font-bold text-sm">Réservations</h4>
+                <p class="text-xs text-slate-500">Modifier, annuler</p>
+            </a>
+            <a href="#payments" class="support-card bg-white dark:bg-slate-800 rounded-xl p-4 text-center shadow-sm border border-primary/10">
+                <span class="material-symbols-outlined text-primary text-3xl mb-2">payments</span>
+                <h4 class="font-bold text-sm">Paiements</h4>
+                <p class="text-xs text-slate-500">Moyens de paiement</p>
+            </a>
+            <a href="#bagages" class="support-card bg-white dark:bg-slate-800 rounded-xl p-4 text-center shadow-sm border border-primary/10">
+                <span class="material-symbols-outlined text-primary text-3xl mb-2">luggage</span>
+                <h4 class="font-bold text-sm">Bagages</h4>
+                <p class="text-xs text-slate-500">Franchises, perte</p>
+            </a>
+            <a href="#urgence" class="support-card bg-white dark:bg-slate-800 rounded-xl p-4 text-center shadow-sm border border-primary/10">
+                <span class="material-symbols-outlined text-primary text-3xl mb-2">emergency</span>
+                <h4 class="font-bold text-sm">Urgences</h4>
+                <p class="text-xs text-slate-500">Assistance 24/7</p>
+            </a>
+        </div>
+
+        <!-- Contact Options -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <a href="tel:+25779639803" class="support-card bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm border border-primary/10 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary text-2xl">call</span>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500">Téléphone</p>
+                    <p class="font-bold">+257 79 639 803</p>
+                    <p class="text-xs text-green-600">24h/24 - 7j/7</p>
+                </div>
+            </a>
+            <a href="https://wa.me/25779639803" class="support-card bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm border border-primary/10 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-green-600 text-2xl">chat</span>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500">WhatsApp</p>
+                    <p class="font-bold">+257 79 639 803</p>
+                    <p class="text-xs text-green-600">Réponse sous 5 min</p>
+                </div>
+            </a>
+            <a href="mailto:support@suretravel.com" class="support-card bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm border border-primary/10 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary text-2xl">mail</span>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500">Email</p>
+                    <p class="font-bold">support@suretravel.com</p>
+                    <p class="text-xs text-slate-500">Réponse sous 24h</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- FAQ Accordion Section -->
+        <section class="mb-8">
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">quiz</span>
+                Questions Fréquentes
+            </h3>
+            <div class="space-y-3">
+                <!-- Accordion Item 1 -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl border border-primary/10 overflow-hidden">
+                    <details class="group" id="reservations">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                            <span class="font-semibold text-sm pr-4">Comment puis-je modifier ma réservation ?</span>
+                            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+                        </summary>
+                        <div class="px-4 pb-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-primary/10 pt-3">
+                            <p class="mb-2">Vous pouvez modifier votre réservation de plusieurs façons :</p>
+                            <ul class="space-y-2 list-disc pl-5">
+                                <li>En ligne : Connectez-vous à votre compte et allez dans "Mes réservations"</li>
+                                <li>Par téléphone : Appelez notre support au +257 79 639 803</li>
+                                <li>Par WhatsApp : Envoyez un message avec votre numéro de réservation</li>
+                            </ul>
+                            <p class="mt-2 text-primary font-semibold">Note : Des frais de modification peuvent s'appliquer selon le tarif de votre billet.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Accordion Item 2 -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl border border-primary/10 overflow-hidden">
+                    <details class="group" id="payments">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                            <span class="font-semibold text-sm pr-4">Quels sont les modes de paiement acceptés ?</span>
+                            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+                        </summary>
+                        <div class="px-4 pb-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-primary/10 pt-3">
+                            <p class="mb-3">Sure Travel Agency accepte plusieurs modes de paiement sécurisés :</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs text-primary">check_circle</span> Mobile Money (MTN MoMo, Airtel Money)</li>
+                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs text-primary">check_circle</span> Virement Bancaire local et international</li>
+                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs text-primary">check_circle</span> Cartes Visa & Mastercard (paiement en ligne sécurisé)</li>
+                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs text-primary">check_circle</span> Paiement en espèces en agence</li>
+                            </ul>
+                            <p class="mt-2 text-primary font-semibold">Tous les paiements sont 100% sécurisés et cryptés.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Accordion Item 3 -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl border border-primary/10 overflow-hidden">
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                            <span class="font-semibold text-sm pr-4">Quelle est la politique d'annulation ?</span>
+                            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+                        </summary>
+                        <div class="px-4 pb-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-primary/10 pt-3">
+                            <p>La politique d'annulation dépend du type de réservation et du tarif choisi :</p>
+                            <ul class="space-y-1 mt-2">
+                                <li><span class="font-bold">Tarif Flex :</span> Annulation gratuite jusqu'à 24h avant le départ</li>
+                                <li><span class="font-bold">Tarif Standard :</span> Frais de 50% en cas d'annulation</li>
+                                <li><span class="font-bold">Tarif Promo :</span> Non remboursable mais modifiable</li>
+                            </ul>
+                            <p class="mt-2">Contactez-nous pour vérifier les conditions de votre réservation spécifique.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Accordion Item 4 -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl border border-primary/10 overflow-hidden">
+                    <details class="group" id="bagages">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                            <span class="font-semibold text-sm pr-4">Comment recevoir mon e-billet et mes documents ?</span>
+                            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+                        </summary>
+                        <div class="px-4 pb-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-primary/10 pt-3">
+                            <p>Une fois le paiement confirmé, vos documents de voyage sont envoyés :</p>
+                            <ul class="space-y-2 mt-2">
+                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs text-primary">check_circle</span> Par email à l'adresse indiquée lors de la réservation</li>
+                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs text-primary">check_circle</span> Via WhatsApp pour un accès immédiat</li>
+                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs text-primary">check_circle</span> Dans votre espace client "Mes voyages"</li>
+                            </ul>
+                            <p class="mt-2">Vous pouvez également télécharger l'application Sure Travel pour avoir tous vos documents accessibles hors ligne.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Accordion Item 5 -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl border border-primary/10 overflow-hidden">
+                    <details class="group" id="urgence">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                            <span class="font-semibold text-sm pr-4">Que faire en cas d'urgence pendant le voyage ?</span>
+                            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+                        </summary>
+                        <div class="px-4 pb-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-primary/10 pt-3">
+                            <p class="font-bold text-primary">Notre service d'urgence est disponible 24h/24 et 7j/7 :</p>
+                            <ul class="space-y-2 mt-2">
+                                <li><span class="font-bold">Téléphone (urgence) :</span> +257 79 639 803 (appels acceptés à toute heure)</li>
+                                <li><span class="font-bold">WhatsApp prioritaire :</span> +257 79 639 803 (réponse immédiate)</li>
+                                <li><span class="font-bold">Email urgence :</span> urgent@suretravel.com</li>
+                            </ul>
+                            <p class="mt-2">Nos agents sont formés pour gérer : retards de vol, perte de bagages, problèmes médicaux, rapatriement, etc.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Accordion Item 6 -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl border border-primary/10 overflow-hidden">
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                            <span class="font-semibold text-sm pr-4">L'agence est-elle ouverte le week-end ?</span>
+                            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+                        </summary>
+                        <div class="px-4 pb-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-primary/10 pt-3">
+                            <p>Oui, notre service client en ligne est disponible <span class="font-bold text-primary">24h/24 et 7j/7</span> pour toutes vos urgences de voyage.</p>
+                            <p class="mt-2">Nos bureaux physiques sont ouverts :</p>
+                            <ul class="mt-1">
+                                <li>Lundi - Vendredi : 08h00 - 18h00</li>
+                                <li>Samedi : 09h00 - 15h00</li>
+                                <li>Dimanche : Fermé (support en ligne disponible)</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-primary/10 mb-8">
+            <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">contact_mail</span>
+                Envoyez-nous un message
+            </h3>
+            <form class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Nom complet</label>
+                        <input type="text" class="w-full px-4 py-3 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Email</label>
+                        <input type="email" class="w-full px-4 py-3 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Sujet</label>
+                    <select class="w-full px-4 py-3 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
+                        <option>Question sur une réservation</option>
+                        <option>Problème de paiement</option>
+                        <option>Modification de voyage</option>
+                        <option>Assistance urgente</option>
+                        <option>Autre</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Message</label>
+                    <textarea rows="4" class="w-full px-4 py-3 rounded-xl border border-primary/20 bg-background-light dark:bg-slate-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"></textarea>
+                </div>
+                <div>
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" class="rounded border-primary/20 text-primary focus:ring-primary/20">
+                        <span class="text-sm text-slate-600">J'accepte que mes données soient traitées pour répondre à ma demande</span>
+                    </label>
+                </div>
+                <button type="submit" class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-primary/90 transition-colors shadow-lg shadow-primary/30">
+                    Envoyer le message
+                </button>
+            </form>
+        </div>
+
+        <!-- Emergency Banner -->
+        <div class="bg-gradient-to-r from-red-500 to-red-600 rounded-2xl p-6 text-white mb-8">
+            <div class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-3xl">emergency_home</span>
+                <div>
+                    <h4 class="text-lg font-bold mb-1">Urgence voyage en cours ?</h4>
+                    <p class="text-white/90 mb-3">Notre équipe d'urgence est disponible immédiatement</p>
+                    <a href="tel:+25779639803" class="inline-flex items-center gap-2 bg-white text-red-600 px-6 py-3 rounded-xl font-bold hover:bg-opacity-90 transition-colors">
+                        <span class="material-symbols-outlined">call</span>
+                        Appel d'urgence : +257 79 639 803
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Office Location -->
+        <div class="p-6 bg-primary/5 dark:bg-primary/10 rounded-2xl border border-primary/10 mb-8">
+            <h4 class="font-bold mb-3 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">location_on</span>
+                Notre agence physique
+            </h4>
+            <p class="text-sm mb-2">Boulevard de l'Indépendance, Bujumbura, Burundi</p>
+            <p class="text-sm text-slate-500">À côté de l'hôtel Source du Nil</p>
+            <div class="mt-3 flex gap-2">
+                <span class="text-xs bg-primary/20 text-primary px-2 py-1 rounded-full">Ouvert aujourd'hui 08h-18h</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    
+    <nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pb-6 pt-2 z-50">
+        <div class="flex items-center justify-around max-w-container mx-auto">
+            <a href="./Home.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-[10px] font-medium">Accueil</span>
+            </a>
+            <a href="./services.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">business_center</span>
+                <span class="text-[10px] font-medium">Services</span>
+            </a>
+            <a href="./booking.html" class="flex flex-col items-center gap-1 text-primary">
+                <span class="material-symbols-outlined fill-1">calendar_month</span>
+                <span class="text-[10px] font-medium">Réservations</span>
+            </a>
+            <a href="./aboutus.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">info</span>
+                <span class="text-[10px] font-medium">À Propos</span>
+            </a>
+            <a href="./support.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">contact_support</span>
+                <span class="text-[10px] font-medium">Aide</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('darkMode', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('darkMode', 'dark');
+            }
+        }
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+</html>
